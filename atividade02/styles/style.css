@@ -1,0 +1,154 @@
+/* ============================= */
+/* ESTILIZAÇÃO BASICA LOGIN.HTML */
+/* ============================= */
+
+*{
+    margin: 0;
+}
+
+
+header {
+    background-color: #635192;
+    padding: 30px;
+    color: white;
+    font-family: arial;
+    text-align: center;
+    font-weight: bold;
+}
+
+.userList:hover{
+    transition: 0.4s;
+    color: #B0A2DE;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.CRUD {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.cadastroUsuario, .listarUsuario, .updateUsuario, .excluirUsuario {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    height: 78.7vh;
+    width: 500px;
+    background-color: #8A7BAF;
+}
+.title{
+    margin-top: 10px;
+    text-align: center;
+    font-family: arial;
+    color: white;
+}
+
+
+#formCadastro, #formUpdate, #formDelete, #loginForm{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: arial;
+}
+
+#formCadastro input, #formUpdate input, #formDelete input, #loginForm input {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+#formCadastro input:hover, #formUpdate input:hover, #formDelete input:hover, #loginForm input:hover {
+    transition: 0.5s;
+    border-color: #964B8A;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+#formCadastro input:focus, #formUpdate input:focus, #formDelete input:focus, #loginForm input:focus {
+    outline: none;
+    transition: 0.1s;
+    border-color: #B0A2DE;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);;
+}
+
+#formCadastro label, #formUpdate label, #formDelete label, #loginForm label {
+    color: white;
+    font-weight: bold;
+}
+
+#formCadastro input[type="submit"], #formUpdate input[type="submit"],#formDelete input[type="submit"], #loginForm input[type="submit"]{
+    margin-top: 350px;
+    background-color: #635192;
+    border-color: #4C3691;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#formDelete input[type="submit"]{
+    margin-top: 520px;
+}
+
+#formCadastro input[type="submit"]:hover, #formUpdate input[type="submit"]:hover, #loginForm input[type="submit"]:hover {
+    transition: 0.5s;
+    border-color: #635192;
+    background-color: #B0A2DE;
+}
+
+#loginForm input {
+    margin-bottom: 30px;
+}
+
+#loginForm input[type="submit"] {
+    margin-top: 260px;
+}
+
+.divListagemUser {
+    height: 75.3vh;
+    background-color: #B0A2DE;
+    margin: 40px;
+    border-radius: 10px;
+}
+.divListagemUser button {
+    padding: 20px;
+    width: 300px;
+    margin: 20px;
+    border-radius: 15px;
+    background-color: white;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.sectionLogin {
+    height: 641px;
+    background-color: #B0A2DE;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    margin-left: 500px;
+    margin-right: 500px;
+    border-radius: 20px;
+}
+.titleLogin {
+    position: absolute;
+    font-size: 50px;
+    color: white;
+    font-family: arial;
+    font-weight: bold;
+    left: 40%;
+    top: 180px;
+}
+
+footer {
+    position: relative;
+    background-color: #635192;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: arial;
+}
