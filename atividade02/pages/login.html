@@ -16,16 +16,18 @@
             <h1 class="titleLogin">Login de Usuário</h1>
 
             <form id="loginForm">
-
+                
                 <label for="email" style="margin-top: 80px;">Email de Usuário</label> 
                 <input type="email" name="email" id="email" placeholder="Insira seu Email" required maxlength="255">
-
+                
                 <label for="password">Senha de Usuário</label>
-                <input type="password" name="password" id="password" placeholder="Insira sua de Usuário">
-
+                <input type="password" name="password" id="password" placeholder="Insira sua de Usuário" required>
+                
+                <p id="mensagemLogin"></p>
                 <input type="submit" value="Logar">
-
+                
             </form>
+            
         </section>
     </main>
 
@@ -33,5 +35,6 @@
         <p>&copy Bryan Miguel Moreira - 2025</p>
     </footer>
 
+    <script src="app.js"></script>
 </body>
 </html>

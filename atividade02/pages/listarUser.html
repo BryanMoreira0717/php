@@ -13,11 +13,26 @@
         <p onclick="window.location.href='home.html'" class="userList">Home</p>
     </header>
     <div class="divListagemUser">
-        <button>Carregar Lista</button>
+        <button onclick="listarUsers()">Carregar Lista</button>
+
+        <p id="mensagemListagem"></p>
+
+        <table border="1" class="tabelaListagemUser">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaUser"></tbody>
+        </table>
+
     </div>
     <footer>
         <p>&copy Bryan Miguel Moreira - 2025</p>
     </footer>
 
+    <script src="app.js"></script>
 </body>
 </html>
