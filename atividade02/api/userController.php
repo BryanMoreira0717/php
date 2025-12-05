@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $name = $input['name'] ?? null;
     $password = $input['password'] ?? null;
 
-    if(!$email || !$password) {
+    if(!$email) {
         http_response_code(400);
         echo json_encode(["error" => "Campos obrigatórios faltando"]);
     }
@@ -161,51 +161,4 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
     http_response_code(200);
     echo json_encode($usuarios);
-}
-
-
-// LOGIN DE USUARIO
-
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'login') {
-    $input = json_decode(file_get_contents("php://input"), true);
-
-    error_log("Dados recebidos: " . print_r($input, true));
-
-    $email = $input['email'] ?? null;
-    $password = $input['password'] ?? null;
-
-    if(!$email || !$password) {
-        http_response_code(400);
-        echo json_encode(["error" => "Email e senha são obrigatórios"]);
-        exit;
-    }
-
-    //buscar usuário pelo email
-
-    $stmt = $connect->prepare("SELECT name, password FROM usuario WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if($result->num_rows === 0){
-        http_response_code(401);
-        echo json_encode(["error" => "Usuário não encontrado"]);
-        exit;
-    }
-
-    $user = $result->fetch_assoc();
-
-    // Verificar senha
-
-    if(password_verify($password, $user['password'])) {
-        http_response_code(200);
-        echo json_encode([
-            "message" => "Login realizado com sucesso",
-            "name" => $user['name'],
-            "email" => $email
-        ]);
-    } else {
-        http_response_code(401);
-        echo json_encode(["error" => "Senha incorreta"]);
-    }
 }
