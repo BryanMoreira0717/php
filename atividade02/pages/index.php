@@ -7,22 +7,21 @@
     <title>CRUD com PHP</title>
     
 </head>
-<body>
+<body onload="listarUsers()">
     <header>
         <p>CRUD Completo em PHP !</p> <br>
-        <p onclick="window.location.href='home.html'" class="userList">Home</p>
+        <p onclick="window.location.href='create.php'" class="userList">Create</p>
     </header>
     <div class="divListagemUser">
-        <button onclick="listarUsers()">Carregar Lista</button>
-
         <p id="mensagemListagem"></p>
 
         <table border="1" class="tabelaListagemUser">
             <thead>
                 <tr>
-                    <th>Nome</th>
+                    <th>Nome</th> 
                     <th>Email</th>
                     <th>Senha</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="tabelaUser"></tbody>

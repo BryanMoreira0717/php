@@ -27,6 +27,9 @@ if(formCadastro){
                 msg.textContent = resultado.message || "Usuário Cadastrado com sucesso !"
                 msg.style.color = "green";
                 formCadastro.reset()
+                setTimeout(() => {
+                    window.location.href="index.php";
+                }, 1000);
             } else{
                 msg.textContent = resultado.error || "Erro ao cadastrar usuário";
                 msg.style.color = "red"
@@ -56,6 +59,8 @@ if(formUpdate) {
         const msg = document.getElementById("mensagemUpdate")
 
         const dados = Object.fromEntries(new FormData(formUpdate))
+        const userAtual = sessionStorage.getItem("usuarioAtual")
+        dados.email = userAtual
 
         try {
             const resposta = await fetch(apiURL, {
@@ -70,6 +75,9 @@ if(formUpdate) {
                 msg.textContent = resultado.message || "Usuário Atualizado com sucesso !"
                 msg.style.color = "green";
                 formUpdate.reset()
+                setTimeout(() => {
+                    window.location.href="index.php";
+                }, 1000);
             }
             else {
                 msg.textContent = resultado.error || "Erro ao atualizar usuário";
@@ -85,6 +93,64 @@ if(formUpdate) {
     })
 }
 
+
+const msgLista = document.getElementById("mensagemListagem")
+
+async function editarUser() {
+    const tabelaUser = document.getElementById("tabelaUser")
+
+    tabelaUser.addEventListener('click', function(event) {
+
+        if(event.target && event.target.classList.contains('botaoEditar')) {
+            const linhaTable = event.target.closest('tr');
+
+            if(linhaTable){
+
+                const email = linhaTable.dataset.email;
+                const name = linhaTable.dataset.name;
+                const password = linhaTable.dataset.password;
+
+                sessionStorage.setItem("usuarioAtual", email);
+                window.location.href="edit.php"
+            }
+        }
+    })
+}
+
+async function deletarUser() {
+    const tabelaUser = document.getElementById("tabelaUser")
+
+    tabelaUser.addEventListener('click', function(event) {
+
+        if(event.target && event.target.classList.contains('botaoExcluir')) {
+            const linhaTable = event.target.closest('tr');
+
+            if(linhaTable){
+
+                const email = linhaTable.dataset.email;
+                const name = linhaTable.dataset.name;
+                const password = linhaTable.dataset.password;
+
+                sessionStorage.setItem("usuarioAtual", email);
+                window.location.href="delete.php"
+            }
+        }
+    })
+}
+
+async function popularEdit() {
+    const usuarioAtual = sessionStorage.getItem("usuarioAtual")
+    const campoEmail = document.getElementById("email")
+    campoEmail.value = usuarioAtual
+}
+
+async function popularDelete() {
+    const usuarioAtual = sessionStorage.getItem("usuarioAtual")
+    const campoEmail = document.getElementById("email")
+    campoEmail.value = usuarioAtual
+}
+
+
 // ==================================
 // ❌ DELETE USUÁRIO
 // ==================================
@@ -98,6 +164,8 @@ if(formDelete) {
         const msg = document.getElementById("mensagemDelete")
 
         const dados = Object.fromEntries(new FormData(formDelete))
+        const userAtual = sessionStorage.getItem("usuarioAtual")
+        dados.email = userAtual
 
         try {
             const resposta = await fetch(apiURL, {
@@ -112,6 +180,9 @@ if(formDelete) {
                 msg.textContent = resultado.message || "Usuário Deletado com sucesso !"
                 msg.style.color = "green";
                 formDelete.reset()
+                setTimeout(() => {
+                    window.location.href="index.php";
+                }, 1000);
             }
             else {
                 msg.textContent = resultado.error || "Erro ao deletar usuário";
@@ -148,8 +219,13 @@ async function listarUsers() {
             usuarios.forEach(u => {
                 const tr = document.createElement("tr");
 
+                tr.dataset.name = u.name
+                tr.dataset.email = u.email
+                tr.dataset.password = u.password
+
                 const tdNome = document.createElement("td")
                 tdNome.textContent = u.name
+
 
                 const tdEmail = document.createElement("td")
                 tdEmail.textContent = u.email
@@ -157,11 +233,16 @@ async function listarUsers() {
                 const tdSenha = document.createElement("td")
                 tdSenha.textContent = u.password
 
+                const tdButton = document.createElement("td")
+                const codigoButton = '<button class="botaoEditar" onclick="editarUser()">Editar</button> <button class="botaoExcluir" onclick="deletarUser()">Excluir</button>'
+                tdButton.innerHTML = codigoButton
+
                 tabela.appendChild(tr)
 
                 tr.appendChild(tdNome);
                 tr.appendChild(tdEmail);
                 tr.appendChild(tdSenha);
+                tr.appendChild(tdButton)
             })
         } else {
             console.error("Erro ao listar usuários")
